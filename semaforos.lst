@@ -1,0 +1,921 @@
+P16 assembler v1.5 (Feb  9 2024)	c:\Users\Utilizador\Desktop\PROJETO_AC\semaforos.lst	Wed Jun 05 12:17:24 2024
+
+Sections
+Index   Name            Address   Size
+0       startup         0000      0014 20
+1       .text           0014      0268 616
+2       .data           027C      0017 23
+3       .stack          0294      0040 64
+
+Symbols
+Name                    Type      Value       Section
+_start                  LABEL     0004 4      startup
+addr_btn_estado         LABEL     00D4 212    .text
+addr_crossing_time_timer LABEL     01F0 496    .text
+addr_semaforo_estado_anterior LABEL     01F6 502    .text
+addr_semaforo_estado_anterior_2 LABEL     011A 282    .text
+addr_semaforo_led_estado LABEL     01F4 500    .text
+addr_semaforo_led_estado_2 LABEL     00B4 180    .text
+addr_semaforo_led_estado_3 LABEL     0148 328    .text
+addr_semaforo_timer     LABEL     01F2 498    .text
+addr_semaforo_timer_2   LABEL     0180 384    .text
+addr_sysclk             LABEL     022E 558    .text
+addr_trigger_semaforo_timer LABEL     017E 382    .text
+BLINK_TIME              ABSOLUTE  0005 5      startup
+btn_estado              LABEL     028A 650    .data
+button_init_ports_timer LABEL     00A0 160    .text
+button_pedestrian_main_function LABEL     00B6 182    .text
+button_pedestrian_main_function_end LABEL     00CE 206    .text
+button_pressed          LABEL     0084 132    .text
+button_pressed_end      LABEL     00AE 174    .text
+button_pressed_modo_cfg LABEL     009A 154    .text
+cfg_times               LABEL     028E 654    .data
+cfg_times_addr          LABEL     01CC 460    .text
+config_mode_main_function LABEL     0058 88     .text
+config_mode_main_function_end LABEL     0082 130    .text
+config_mode_main_function_not_active LABEL     0076 118    .text
+CPSR_BIT_I              ABSOLUTE  0010 16     startup
+crossing_time_cfg_main_function LABEL     0034 52     .text
+crossing_time_cfg_main_function_end LABEL     0054 84     .text
+crossing_time_cfg_main_function_valid_cfg LABEL     0050 80     .text
+CROSSING_TIME_DEFAULT_INDEX ABSOLUTE  0000 0      startup
+crossing_time_index     LABEL     028C 652    .data
+crossing_time_index_addr LABEL     01CE 462    .text
+crossing_time_index_addr_2 LABEL     0056 86     .text
+crossing_time_isr_timer_control LABEL     0182 386    .text
+crossing_time_isr_timer_control_end LABEL     01A0 416    .text
+crossing_time_isr_timer_control_non_zero LABEL     019C 412    .text
+crossing_time_timer     LABEL     0282 642    .data
+crossing_timer_init     LABEL     01AC 428    .text
+crossing_timer_start    LABEL     01BC 444    .text
+inport_addr             LABEL     0236 566    .text
+INPORT_ADDRESS          ABSOLUTE  FF80 65408  startup
+inport_read             LABEL     0230 560    .text
+isr                     LABEL     01F8 504    .text
+isr_addr                LABEL     0012 18     startup
+line#79                 LABEL     000C 12     startup
+main                    LABEL     0014 20     .text
+main_addr               LABEL     0010 16     startup
+main_loop               LABEL     002A 42     .text
+outport_addr            LABEL     024A 586    .text
+OUTPORT_ADDRESS         ABSOLUTE  FFC0 65472  startup
+outport_img             LABEL     027C 636    .data
+outport_img_addr        LABEL     0242 578    .text
+outport_init            LABEL     0238 568    .text
+OUTPORT_INIT_VAL        ABSOLUTE  0000 0      startup
+outport_write           LABEL     0244 580    .text
+PORT_IN_BTN_MASK_CONFIG ABSOLUTE  0010 16     startup
+PORT_IN_BTN_MASK_PEDESTRIAN ABSOLUTE  0001 1      startup
+PORT_OUT_LED_MASK_AMARELO_L1 ABSOLUTE  0003 3      startup
+PORT_OUT_LED_MASK_CONFIGURATION_MODE_LED_L3 ABSOLUTE  0030 48     startup
+PORT_OUT_LED_MASK_OPERATION_MODE_LED_L3 ABSOLUTE  0020 32     startup
+PORT_OUT_LED_MASK_VERDE_L2 ABSOLUTE  0008 8      startup
+PORT_OUT_LED_MASK_VERMELHO_L1 ABSOLUTE  0001 1      startup
+PORT_OUT_LED_MASK_VERMELHO_L2 ABSOLUTE  0004 4      startup
+PTC_ADDR                LABEL     027A 634    .text
+PTC_ADDRESS             ABSOLUTE  FF40 65344  startup
+ptc_clr_irq             LABEL     0274 628    .text
+PTC_CMD_START           ABSOLUTE  0000 0      startup
+PTC_CMD_STOP            ABSOLUTE  0001 1      startup
+ptc_get_value           LABEL     026E 622    .text
+ptc_init                LABEL     024C 588    .text
+ptc_start               LABEL     025E 606    .text
+ptc_stop                LABEL     0266 614    .text
+PTC_TC                  ABSOLUTE  0004 4      startup
+PTC_TCR                 ABSOLUTE  0000 0      startup
+PTC_TIR                 ABSOLUTE  0006 6      startup
+PTC_TMR                 ABSOLUTE  0002 2      startup
+semaforo_estado_anterior LABEL     0286 646    .data
+semaforo_isr_timer_control LABEL     0168 360    .text
+semaforo_isr_timer_control_if1_end LABEL     017A 378    .text
+semaforo_led_config_init LABEL     01E0 480    .text
+semaforo_led_estado     LABEL     0284 644    .data
+semaforo_led_estado_init LABEL     01D0 464    .text
+semaforo_main_function  LABEL     014A 330    .text
+semaforo_main_function_end LABEL     0162 354    .text
+semaforo_set_estado_configuracao LABEL     00F8 248    .text
+semaforo_set_estado_configuracao_c1 LABEL     0112 274    .text
+semaforo_set_estado_configuracao_end LABEL     0114 276    .text
+semaforo_set_estado_operacao LABEL     00D6 214    .text
+semaforo_set_estado_operacao_c1 LABEL     00F0 240    .text
+semaforo_set_estado_operacao_end LABEL     00F2 242    .text
+semaforo_set_leds       LABEL     011C 284    .text
+semaforo_set_leds_c1    LABEL     0130 304    .text
+semaforo_set_leds_c2    LABEL     0138 312    .text
+semaforo_set_leds_end   LABEL     0142 322    .text
+semaforo_t              LABEL     0280 640    .data
+semaforo_timer_init     LABEL     01A2 418    .text
+STACK_SIZE              ABSOLUTE  0040 64     startup
+stack_top               LABEL     02D4 724    .stack
+stack_top_addr          LABEL     000E 14     startup
+sysclk                  LABEL     027E 638    .data
+SYSCLK_FREQ             ABSOLUTE  0009 9      startup
+sysclk_get_ticks        LABEL     0228 552    .text
+sysclk_init             LABEL     021C 540    .text
+TIMES_MASK              ABSOLUTE  00E0 224    startup
+trigger_semaforo_timer  LABEL     0288 648    .data
+
+Code listing
+   1           	; Ficheiro:  semaforos.S
+   2           	; Descricao: Programa de realização do TP4-projeto  de
+   3           	;            Arquitetura de Computadores.
+   4           	; Autor:     Selma Pontes e Isabel Clemente (grupo-08)
+   5           	; Nº:           51523     e   51828
+   6           	; Data:      30-05-2024
+   7           	
+   8           	; Definicao dos valores dos simbolos utilizados no programa
+   9           	;
+  10          		.equ	CPSR_BIT_I, 0b010000          ; Mascara para o bit I do registo CPSR
+  11           	
+  12          		.equ	STACK_SIZE, 64                ; Dimensao do stack - 64 B
+  13           	
+  14           		; Definicoes do porto de entrada
+  15          		.equ	INPORT_ADDRESS, 0xFF80        ; Endereco do porto de entrada
+  16           	
+  17           		; Definicoes do porto de saida
+  18          		.equ	OUTPORT_ADDRESS, 0xFFC0       ; Endereco do porto de saida
+  19           	
+  20          		.equ	OUTPORT_INIT_VAL, 0           ; Valor inicial do porto de saida
+  21           	
+  22           		; Definicoes do circuito pTC
+  23           	; *** Inicio de troco para completar ***
+  24          		.equ	PTC_ADDRESS,  0xFF40          ; Endereco do circuito pTC
+  25           	; *** Fim de troco para completar ***
+  26           	
+  27          		.equ	PTC_TCR, 0                    ; Deslocamento do registo TCR do pTC
+  28          		.equ	PTC_TMR, 2                    ; Deslocamento do registo TMR do pTC
+  29          		.equ	PTC_TC,  4                    ; Deslocamento do registo TC do pTC
+  30          		.equ	PTC_TIR, 6                    ; Deslocamento do registo TIR do pTC
+  31           	
+  32          		.equ	PTC_CMD_START, 0              ; Comando para iniciar a contagem no pTC
+  33          		.equ	PTC_CMD_STOP, 1               ; Comando para parar a contagem no pTC
+  34           	
+  35           	; *** Inicio de troco para completar ***
+  36          		.equ	SYSCLK_FREQ,0x09            ; Intervalo de contagem do circuito pTC (100msec)
+  37           	  ;no simulador        na placa                   ; que suporta a implementação do sysclk
+  38           	 ;módulo 9                 99
+  39           	 ;frequencia 100Hz        1KHz
+  40           	; *** Fim de troco para completar ***
+  41           		; Outras definições 
+  42           		
+  43           	;Mascaras para os bits consoante o funcionamento do sistema	
+  44          		.equ PORT_IN_BTN_MASK_PEDESTRIAN, 0x01   ;botão
+  45          		.equ PORT_IN_BTN_MASK_CONFIG,     0x10  ;16 em dec
+  46           	
+  47           		;máscaras  para modo operação:
+  48          		.equ    PORT_OUT_LED_MASK_AMARELO_L1, 				0x03          
+  49          		.equ    PORT_OUT_LED_MASK_VERMELHO_L2, 			0x04
+  50           		  
+  51           		 ;máscaras para modo de transição 0->1 (PRESSED-BUTTON)  
+  52          		 .equ    PORT_OUT_LED_MASK_VERMELHO_L1 , 		0x01
+  53          		 .equ    PORT_OUT_LED_MASK_VERDE_L2,     		0x08
+  54          	     .equ    PORT_OUT_LED_MASK_OPERATION_MODE_LED_L3,  				0x20 ; 32 em decimal    
+  55           	
+  56           		;máscaras para o modo configuração (JÁ existem declaradas acima):
+  57           	;	.equ    AMARELO_LED_L1 ,3
+  58           	;	.equ    VERDE_LED_L2 , 8
+  59          	    .equ    PORT_OUT_LED_MASK_CONFIGURATION_MODE_LED_L3,  0x30 ;48 em hexadecimal  
+  60           	       
+  61           	
+  62           	; *** Inicio de troco para completar ***
+  63          		.equ	BLINK_TIME,5                ; 50% do periodo a  em periodos do relogio do pTC 
+  64          		.equ  	CROSSING_TIME_DEFAULT_INDEX, 0 ; Pre-definido 10 segundos       
+  65          	    .equ    TIMES_MASK, 0xE0                                              
+  66           	; *** Fim de troco para completar ***
+  67           	   
+  68           	; Seccao:    startup
+  69           	; Descricao: Guarda o código de arranque do sistema
+  70           	;
+  71           		.section startup
+  72 0000 01 58		b	_start
+  73 0002 7F 0C		ldr	pc, isr_addr
+  74           	_start:
+  75 0004 4D 0C		ldr	sp, stack_top_addr
+  76 0006 80 B7	    mov r0, pc
+  77 0008 0E A2	    add lr, r0, #4
+  78 000A 2F 0C		ldr	pc, main_addr
+  79 000C FF 5B	    b   .
+  80           	
+  81           	stack_top_addr:
+  82 000E D4 02		.word	stack_top
+  83           	main_addr:
+  84 0010 14 00		.word	main
+  85           	isr_addr:
+  86 0012 F8 01		.word	isr
+  87           	
+  88           	; Seccao:    text
+  89           	; Descricao: Guarda o código do programa
+  90           	;
+  91           		.text
+  92           	
+  93           	; Rotina:    main
+  94           	; Descricao: Configura as inicializações necessárias para piscar um LED.
+  95           	; Entradas:  -
+  96           	; Saidas:    -
+  97           	; Efeitos:   Configura o porto de saída, inicializa o relógio do sistema (sysclk) e inicia um loop para piscar um LED.
+  98           	main:
+  99 0014 00 60		mov	r0, #OUTPORT_INIT_VAL
+ 100 0016 10 5D		bl	outport_init
+ 101 0018 90 60		mov	r0, #SYSCLK_FREQ   
+ 102 001A 00 5D		bl	sysclk_init
+ 103           	
+ 104           		; initializar timer dos leds dos semaforos
+ 105 001C C2 5C		bl semaforo_timer_init
+ 106 001E D8 5C		bl semaforo_led_estado_init
+ 107 0020 C5 5C		bl crossing_timer_init
+ 108           	
+ 109 0022 60 B0		mrs	r0, cpsr
+ 110 0024 01 61		mov	r1, #CPSR_BIT_I
+ 111 0026 80 C8		orr	r0, r0, r1
+ 112 0028 40 B0		msr	cpsr, r0
+ 113           	main_loop:
+ 114 002A 8F 5C		bl  semaforo_main_function
+ 115 002C 44 5C		bl  button_pedestrian_main_function
+ 116 002E 14 5C		bl  config_mode_main_function
+ 117 0030 01 5C		bl  crossing_time_cfg_main_function
+ 118 0032 FB 5B		b	main_loop
+ 119           	
+ 120           	; Rotina:    crossing_time_cfg_main_function
+ 121           	; Descricao: Funcao que executa no modo de configuracao e atualiza o crossing time
+ 122           	;verificação se estamos no estado de configuração , 
+ 123           	;se tiver lemos a entrada e configura-se o valor de crossing_time
+ 124           	crossing_time_cfg_main_function:
+ 125 0034 0E 24		push lr
+ 126           	
+ 127 0036 E2 0F		ldr r2,addr_semaforo_led_estado_2
+ 128 0038 22 00		ldr r2, [r2]
+ 129 003A 20 60		mov r0, #2 
+ 130 003C 20 B8		cmp r2, r0
+ 131 003E 0A 44		bne crossing_time_cfg_main_function_end
+ 132           		; modo configuracao
+ 133 0040 F7 5C		bl inport_read
+ 134 0042 01 6E		mov r1, #TIMES_MASK
+ 135 0044 80 C0		and r0, r0, r1
+ 136 0046 80 EA		lsr r0,r0,#5
+ 137           	
+ 138           		; em r0 tenho valor index do timer
+ 139 0048 51 60		mov r1, #5
+ 140 004A 80 B8		cmp r0, r1
+ 141 004C 01 4C		blo crossing_time_cfg_main_function_valid_cfg
+ 142 004E 02 58		b crossing_time_cfg_main_function_end
+ 143           	
+ 144           	crossing_time_cfg_main_function_valid_cfg:
+ 145 0050 21 0C		ldr r1,crossing_time_index_addr_2
+ 146 0052 10 20		str r0,[r1]
+ 147           	
+ 148           	crossing_time_cfg_main_function_end:
+ 149 0054 0F 04		pop pc
+ 150           	
+ 151           	crossing_time_index_addr_2:
+ 152 0056 8C 02		.word	crossing_time_index
+ 153           	
+ 154           	; Rotina:    config_mode_main_function
+ 155           	; Descricao: Funcao que monitoriza o modo de configuracao
+ 156           	
+ 157           	config_mode_main_function:
+ 158 0058 0E 24		push lr
+ 159           	
+ 160 005A EA 5C		bl inport_read
+ 161 005C B2 0E		ldr r2,addr_semaforo_led_estado_2
+ 162           	
+ 163 005E 01 61		mov r1, #PORT_IN_BTN_MASK_CONFIG
+ 164 0060 80 C0		and r0, r0, r1
+ 165 0062 80 B8		cmp r0, r1
+ 166 0064 08 44		bne config_mode_main_function_not_active
+ 167           	
+ 168 0066 20 00		ldr r0,[r2]
+ 169 0068 21 60		mov r1, #2
+ 170 006A 80 B8		cmp r0, r1
+ 171 006C 0A 40		beq config_mode_main_function_end
+ 172           	
+ 173 006E 21 20		str r1,[r2]  
+ 174 0070 98 5C		bl semaforo_timer_init
+ 175 0072 B6 5C		bl semaforo_led_config_init
+ 176 0074 06 58		b config_mode_main_function_end
+ 177           	
+ 178           	config_mode_main_function_not_active:
+ 179 0076 20 00		ldr r0,[r2]
+ 180 0078 21 60		mov r1, #2
+ 181 007A 80 B8		cmp r0, r1
+ 182 007C 02 44		bne config_mode_main_function_end
+ 183           	
+ 184 007E 91 5C		bl semaforo_timer_init
+ 185 0080 A7 5C		bl semaforo_led_estado_init
+ 186           	
+ 187           	config_mode_main_function_end:
+ 188 0082 0F 04		pop pc
+ 189           	; Rotina:    button_pressed
+ 190           	; Descricao: Funcao que executa quando o botao for pressionado
+ 191           	
+ 192           	button_pressed:
+ 193 0084 0E 24		push lr
+ 194 0086 00 24		push r0
+ 195 0088 01 24		push r1
+ 196           	
+ 197 008A 41 0D		ldr r1,addr_semaforo_led_estado_2
+ 198 008C 10 00		ldr r0,[r1]
+ 199           	
+ 200 008E 02 60		mov r2, #0
+ 201 0090 00 B9		cmp r0, r2
+ 202 0092 03 44		bne button_pressed_modo_cfg
+ 203           		
+ 204 0094 12 60		mov r2, #1
+ 205 0096 12 20		str r2, [r1]
+ 206           	
+ 207 0098 03 58		b button_init_ports_timer
+ 208           	
+ 209           	button_pressed_modo_cfg:
+ 210 009A 12 60		mov r2, #1
+ 211 009C 00 B9		cmp r0, r2
+ 212 009E 07 44		bne button_pressed_end
+ 213           	
+ 214           	button_init_ports_timer:
+ 215 00A0 10 60		mov r0, #PORT_OUT_LED_MASK_VERMELHO_L1
+ 216 00A2 81 60		mov r1, #PORT_OUT_LED_MASK_VERDE_L2
+ 217 00A4 80 C8		orr r0, r0, r1
+ 218 00A6 01 62		mov r1, #PORT_OUT_LED_MASK_OPERATION_MODE_LED_L3
+ 219 00A8 80 C8		orr r0, r0, r1
+ 220           	
+ 221 00AA CC 5C		bl outport_write
+ 222 00AC 87 5C		bl crossing_timer_start
+ 223           	
+ 224           	button_pressed_end:
+ 225 00AE 01 04		pop r1
+ 226 00B0 00 04		pop r0
+ 227 00B2 0F 04		pop pc
+ 228           	
+ 229           	addr_semaforo_led_estado_2:
+ 230 00B4 84 02	     .word semaforo_led_estado
+ 231           	
+ 232           	; Rotina:    button_main_function
+ 233           	; Descricao: Main function do butao. Monitoriza o botao
+ 234           	;se for detetada uma transição de 0->1 chamamos o button_pressed
+ 235           	
+ 236           	button_pedestrian_main_function:
+ 237 00B6 0E 24		push lr
+ 238 00B8 BB 5C		bl inport_read
+ 239           		; r0 temos o valor do porto
+ 240 00BA 11 60		mov r1, #PORT_IN_BTN_MASK_PEDESTRIAN
+ 241 00BC 80 C0		and r0, r0, r1
+ 242 00BE 80 B8		cmp r0, r1
+ 243           	
+ 244 00C0 06 44		bne button_pedestrian_main_function_end
+ 245 00C2 01 60		mov r1, #0
+ 246           	
+ 247 00C4 72 0C		ldr r2, addr_btn_estado
+ 248 00C6 23 00		ldr r3, [r2]
+ 249 00C8 B0 B8		cmp r3, r1
+ 250 00CA 01 44		bne button_pedestrian_main_function_end
+ 251           	
+ 252 00CC DB 5F		bl button_pressed
+ 253           		
+ 254           	button_pedestrian_main_function_end:
+ 255           	
+ 256 00CE 21 0C		ldr r1, addr_btn_estado
+ 257 00D0 10 20		str r0, [r1]
+ 258 00D2 0F 04		pop pc
+ 259           	
+ 260           	addr_btn_estado:
+ 261 00D4 8A 02	     .word btn_estado
+ 262           	
+ 263           	
+ 264           	; Rotina:   semaforo_set_estado_operacao
+ 265           	; Descricao: Funcao de controlo dos leds quando sistema esta em modo operacao
+ 266           	;se trigger a 1 , tem de se comutar o led ,
+ 267           	;a variavel 'semaforo_estado_anterior' indica para onde vou , se tiver a 0 vai para 1 ou vice-versa 
+ 268           	;para quando tem de se tem de fazer o led  piscar
+ 269           	semaforo_set_estado_operacao:
+ 270 00D6 0E 24		push	lr
+ 271           	
+ 272 00D8 40 60		mov r0, #PORT_OUT_LED_MASK_VERMELHO_L2
+ 273           	
+ 274 00DA 01 62		mov r1, #PORT_OUT_LED_MASK_OPERATION_MODE_LED_L3
+ 275 00DC 80 C8		orr r0, r0, r1
+ 276           	
+ 277 00DE D1 0D		ldr r1,addr_semaforo_estado_anterior_2
+ 278 00E0 12 00		ldr r2,[r1]
+ 279           	
+ 280 00E2 03 60		mov r3, #0
+ 281 00E4 A0 B9		cmp r2, r3
+ 282 00E6 04 44		bne semaforo_set_estado_operacao_c1
+ 283           	
+ 284 00E8 33 60		mov r3, #PORT_OUT_LED_MASK_AMARELO_L1
+ 285 00EA 80 C9		orr r0, r0, r3
+ 286           	
+ 287 00EC 12 60		mov r2, #1
+ 288 00EE 01 58		b semaforo_set_estado_operacao_end
+ 289           	
+ 290           	semaforo_set_estado_operacao_c1:
+ 291 00F0 02 60		mov r2, #0
+ 292           	
+ 293           	semaforo_set_estado_operacao_end:
+ 294 00F2 12 20		str r2,[r1]
+ 295 00F4 A7 5C		bl outport_write
+ 296           	
+ 297 00F6 0F 04		pop pc
+ 298           	
+ 299           	
+ 300           	; Rotina:   semaforo_set_estado_configuração
+ 301           	; Descricao: Funcao de controlo dos leds quando sistema esta em modo configuração
+ 302           	 
+ 303           	semaforo_set_estado_configuracao:
+ 304 00F8 0E 24		push	lr
+ 305           	
+ 306 00FA 00 63		mov r0, #PORT_OUT_LED_MASK_CONFIGURATION_MODE_LED_L3
+ 307           	
+ 308 00FC E1 0C		ldr r1,addr_semaforo_estado_anterior_2
+ 309 00FE 12 00		ldr r2,[r1]
+ 310           	
+ 311 0100 03 60		mov r3, #0
+ 312 0102 A0 B9		cmp r2, r3
+ 313 0104 06 44		bne semaforo_set_estado_configuracao_c1
+ 314           	
+ 315 0106 33 60		mov r3, #PORT_OUT_LED_MASK_AMARELO_L1
+ 316 0108 80 C9		orr r0, r0, r3
+ 317 010A 83 60		mov r3,  #PORT_OUT_LED_MASK_VERDE_L2
+ 318 010C 80 C9		orr r0, r0,r3
+ 319           	
+ 320 010E 12 60		mov r2, #1
+ 321 0110 01 58		b semaforo_set_estado_configuracao_end
+ 322           	
+ 323           	semaforo_set_estado_configuracao_c1:
+ 324 0112 02 60		mov r2, #0
+ 325           	
+ 326           	semaforo_set_estado_configuracao_end:
+ 327 0114 12 20		str r2,[r1]
+ 328 0116 96 5C		bl outport_write
+ 329           	
+ 330 0118 0F 04		pop pc
+ 331           	
+ 332           	addr_semaforo_estado_anterior_2:
+ 333 011A 86 02	     .word semaforo_estado_anterior
+ 334           	
+ 335           	; Rotina:    semaforo_set_leds
+ 336           	; Descricao: Ve em que estado esta selecionado e chama funcao correspondente(máquina de estados)
+ 337           	; Entradas:  -
+ 338           	; Saidas:    -
+ 339           	; Efeitos: 
+ 340           	semaforo_set_leds:
+ 341 011C 0E 24		push	lr
+ 342 011E 00 24		push 	r0
+ 343 0120 01 24		push    r1
+ 344           	
+ 345 0122 21 0D		ldr r1,addr_semaforo_led_estado_3
+ 346 0124 10 00		ldr r0,[r1]
+ 347           	
+ 348 0126 02 60		mov r2, #0
+ 349 0128 00 B9		cmp r0, r2
+ 350 012A 02 44		bne semaforo_set_leds_c1
+ 351           		; ESTADO: operacao
+ 352 012C D4 5F		bl semaforo_set_estado_operacao
+ 353           	
+ 354 012E 09 58		b semaforo_set_leds_end
+ 355           	semaforo_set_leds_c1:
+ 356 0130 12 60		mov r2, #1
+ 357 0132 00 B9		cmp r0, r2
+ 358 0134 01 44		bne semaforo_set_leds_c2
+ 359           		; ESTADO: PEDESTRIAN
+ 360           	
+ 361 0136 05 58		b semaforo_set_leds_end
+ 362           	
+ 363           	semaforo_set_leds_c2:
+ 364 0138 22 60		mov r2, #2
+ 365 013A 00 B9		cmp r0, r2
+ 366 013C 02 44		bne semaforo_set_leds_end
+ 367           		; ESTADO: CONFIGURACAO
+ 368 013E DC 5F		bl semaforo_set_estado_configuracao
+ 369           		
+ 370 0140 00 58		b semaforo_set_leds_end
+ 371           	semaforo_set_leds_end:
+ 372 0142 01 04	    pop r1
+ 373 0144 00 04		pop r0
+ 374 0146 0F 04		pop pc
+ 375           	
+ 376           	addr_semaforo_led_estado_3:
+ 377 0148 84 02	     .word semaforo_led_estado
+ 378           	
+ 379           	
+ 380           	; Rotina:    semaforo_main_function
+ 381           	; Descricao: Processo para ser executado no main. responsavel por piscar leds
+ 382           	;verificação da variável trigger , se trigger tiver a 1 ,faz-se os set dos leds
+ 383           	semaforo_main_function:
+ 384 014A 0E 24		push lr
+ 385 014C 00 24		push r0
+ 386 014E 01 24		push r1
+ 387           	
+ 388 0150 61 0D		ldr r1,addr_trigger_semaforo_timer
+ 389 0152 10 00		ldr r0,[r1]
+ 390           	
+ 391 0154 11 60		mov r1, #1
+ 392 0156 80 B8		cmp r0, r1
+ 393 0158 04 44		bne semaforo_main_function_end
+ 394 015A E0 5F		bl semaforo_set_leds
+ 395           	
+ 396 015C 01 0D		ldr r1,addr_trigger_semaforo_timer
+ 397 015E 00 60		mov r0, #0
+ 398 0160 10 20		str r0, [r1]
+ 399           	
+ 400           	semaforo_main_function_end:
+ 401 0162 01 04		pop r1
+ 402 0164 00 04		pop r0
+ 403 0166 0F 04		pop pc 
+ 404           	
+ 405           	
+ 406           	; Rotina:    semaforo_isr_timer_control
+ 407           	; Descricao: Executada pela interrupcao, decremetna o timer do semaforo e executa a funcao dos leds
+ 408           	 ; verificação de 0.5 em 0.5s , quando 0.5 s passarem utilizamos a variavel trigger e metemos-la a 1
+ 409           	 ; trigger a 1 , METE O LED a 1 , a verificação é feita na main function
+ 410           	semaforo_isr_timer_control:
+ 411 0168 0E 24		push	lr
+ 412           	
+ 413 016A A2 0C		ldr r2,addr_semaforo_timer_2
+ 414 016C 20 00		ldr r0,[r2]
+ 415 016E 80 A8		sub r0, r0, #1
+ 416           		
+ 417 0170 04 44		bne semaforo_isr_timer_control_if1_end
+ 418           		
+ 419           		;bl semaforo_set_leds
+ 420 0172 51 0C		ldr r1,addr_trigger_semaforo_timer
+ 421 0174 10 60		mov r0, #1
+ 422 0176 10 20		str r0,[r1]
+ 423           	
+ 424 0178 50 60		mov r0,#BLINK_TIME
+ 425           	
+ 426           	semaforo_isr_timer_control_if1_end:
+ 427 017A 20 20	    str r0,[r2]
+ 428 017C 0F 04		pop pc
+ 429           	
+ 430           	addr_trigger_semaforo_timer:
+ 431 017E 88 02	     .word trigger_semaforo_timer
+ 432           	
+ 433           	addr_semaforo_timer_2:
+ 434 0180 80 02	     .word semaforo_t
+ 435           	
+ 436           	; Rotina:    crossing_time_isr_timer_control
+ 437           	; Descricao: Executada pela interrupcao, decremetna o timer do semaforo e executa a funcao dos leds
+ 438           	;quando se carrega no botão vamos esperar o crossing_time até terminar
+ 439           	;se crossing time for 0 transita-se de estado par nomeadamente('OPERAÇÃO')
+ 440           	crossing_time_isr_timer_control:
+ 441 0182 0E 24		push	lr
+ 442           	
+ 443 0184 51 0F		ldr r1,addr_crossing_time_timer
+ 444 0186 10 00		ldr r0,[r1]
+ 445 0188 02 60		mov r2, #0
+ 446 018A 00 B9		cmp r0, r2
+ 447 018C 07 44		bne crossing_time_isr_timer_control_non_zero
+ 448           		
+ 449           		; Transitar estado
+ 450 018E 21 0F		ldr r1, addr_semaforo_led_estado
+ 451 0190 12 00		ldr r2, [r1]
+ 452 0192 10 60		mov r0, #1
+ 453 0194 20 B8		cmp r2, r0
+ 454 0196 04 44		bne crossing_time_isr_timer_control_end
+ 455 0198 04 5C		bl semaforo_timer_init
+ 456 019A 1A 5C		bl semaforo_led_estado_init
+ 457           	
+ 458           	crossing_time_isr_timer_control_non_zero:
+ 459 019C 80 A8		sub r0, r0, #1
+ 460 019E 10 20		str r0,[r1]
+ 461           	
+ 462           	crossing_time_isr_timer_control_end:
+ 463 01A0 0F 04		pop pc
+ 464           	
+ 465           	; Rotina:    semaforo_timer_init
+ 466           	; Descricao: Incicializa o timer do semaforo Conta de 5 em 5.
+ 467           	
+ 468           	semaforo_timer_init:
+ 469 01A2 0E 24	        push lr
+ 470           	
+ 471 01A4 61 0E			ldr r1,addr_semaforo_timer
+ 472 01A6 50 60			mov r0, #BLINK_TIME
+ 473 01A8 10 20			str r0,[r1]  ; limpando eventuais pedidos de interrupcao pendentes (escrevendo)
+ 474           	
+ 475 01AA 0F 04			pop pc
+ 476           	
+ 477           	; Rotina:    crossing_timer_init
+ 478           	; Descricao: Incicializa o timer do crossing time.
+ 479           	
+ 480           	crossing_timer_init:
+ 481 01AC 0E 24	        push lr
+ 482           	
+ 483 01AE 01 0E			ldr r1,addr_crossing_time_timer
+ 484 01B0 00 60			mov r0, #0
+ 485 01B2 10 20			str r0,[r1]  ; limpando eventuais pedidos de interrupcao pendentes (escrevendo)
+ 486           	
+ 487 01B4 C1 0C			ldr r1,crossing_time_index_addr
+ 488 01B6 00 60			mov r0, #CROSSING_TIME_DEFAULT_INDEX
+ 489 01B8 10 20			str r0,[r1]
+ 490           	
+ 491 01BA 0F 04			pop pc
+ 492           	
+ 493           	; Rotina:    crossing_timer_start
+ 494           	; Descricao: Inicia contagem.
+ 495           	
+ 496           	crossing_timer_start:
+ 497 01BC 0E 24	        push lr
+ 498           			
+ 499 01BE 71 0C			ldr r1,crossing_time_index_addr
+ 500 01C0 12 00			ldr r2, [r1]
+ 501           	
+ 502 01C2 41 0C			ldr r1, cfg_times_addr
+ 503 01C4 10 19			ldrb r0, [r1, r2]
+ 504           	
+ 505 01C6 41 0D			ldr r1,addr_crossing_time_timer
+ 506 01C8 10 20			str r0,[r1]  ; limpando eventuais pedidos de interrupcao pendentes (escrevendo)
+ 507           	
+ 508 01CA 0F 04			pop pc
+ 509           	
+ 510           	cfg_times_addr:
+ 511 01CC 8E 02		.word	cfg_times
+ 512           	
+ 513           	crossing_time_index_addr:
+ 514 01CE 8C 02		.word	crossing_time_index
+ 515           	
+ 516           	; Rotina:    semaforo_led_estado_init
+ 517           	; Descricao: Incicializa as variaveis de control do estado dos leds
+ 518           	
+ 519           	semaforo_led_estado_init:
+ 520 01D0 0E 24	        push lr
+ 521           	
+ 522 01D2 01 0D			ldr r1,addr_semaforo_led_estado
+ 523 01D4 00 60			mov r0, #0
+ 524 01D6 10 20			str r0,[r1]  ; limpando eventuais pedidos de interrupcao pendentes (escrevendo)
+ 525           	
+ 526 01D8 E1 0C			ldr r1,addr_semaforo_estado_anterior
+ 527 01DA 00 60			mov r0, #0
+ 528 01DC 10 20			str r0,[r1]
+ 529           	
+ 530 01DE 0F 04			pop pc
+ 531           	
+ 532           	; Rotina:    semaforo_led_config_init
+ 533           	; Descricao: Incicializa as variaveis de control no entado config
+ 534           	
+ 535           	semaforo_led_config_init:
+ 536 01E0 0E 24	        push lr
+ 537           	
+ 538 01E2 81 0C			ldr r1,addr_semaforo_led_estado
+ 539 01E4 20 60			mov r0, #2
+ 540 01E6 10 20			str r0,[r1]  ; limpando eventuais pedidos de interrupcao pendentes (escrevendo)
+ 541           	
+ 542 01E8 61 0C			ldr r1,addr_semaforo_estado_anterior
+ 543 01EA 00 60			mov r0, #0
+ 544 01EC 10 20			str r0,[r1]
+ 545           	
+ 546 01EE 0F 04			pop pc
+ 547           	
+ 548           	addr_crossing_time_timer:
+ 549 01F0 82 02	     .word crossing_time_timer
+ 550           	
+ 551           	addr_semaforo_timer:
+ 552 01F2 80 02	     .word semaforo_t
+ 553           	
+ 554           	addr_semaforo_led_estado:
+ 555 01F4 84 02	     .word semaforo_led_estado
+ 556           	
+ 557           	addr_semaforo_estado_anterior:
+ 558 01F6 86 02	     .word semaforo_estado_anterior
+ 559           	
+ 560           	; Rotina:    isr
+ 561           	; Descricao: Incrementa o valor da variável global sysclk.
+ 562           	; Entradas:  -
+ 563           	; Saidas:    -
+ 564           	; Efeitos:  Incrementa o valor da variável global sysclk em 1 a cada interrupção.
+ 565           	isr:
+ 566 01F8 0E 24	   push lr
+ 567 01FA 00 24	   push r0
+ 568 01FC 01 24	   push r1
+ 569 01FE 02 24	   push r2
+ 570 0200 03 24	   push r3
+ 571 0202 38 5C	   bl   ptc_clr_irq
+ 572 0204 B1 5F	   bl   semaforo_isr_timer_control
+ 573 0206 BD 5F	   bl	crossing_time_isr_timer_control
+ 574 0208 21 0D	   ldr  r1,addr_sysclk
+ 575 020A 10 00	   ldr  r0,[r1]
+ 576 020C 80 A0	   add  r0 ,r0,#1
+ 577 020E 10 20	   str  r0,[r1]
+ 578 0210 03 04	   pop  r3
+ 579 0212 02 04	   pop  r2
+ 580 0214 01 04	   pop  r1
+ 581 0216 00 04	   pop  r0
+ 582 0218 0E 04	   pop  lr
+ 583 021A 20 B0	   movs pc,lr
+ 584           	
+ 585           	; Rotina:    sysclk_init
+ 586           	; Descricao: Inicia uma nova contagem no periferico pTC com o intervalo de
+ 587           	;            contagem recebido em R0, em ticks, limpando eventuais pedidos de
+ 588           	;            interrupcao pendentes e iniciando com o valor zero a variavel
+ 589           	;            global sysclk.
+ 590           	;            Interface exemplo: void sysclk_init( uint8_t interval );
+ 591           	; Entradas:  R0 - Valor do novo intervalo de contagem, em ticks.
+ 592           	; Saidas:    -
+ 593           	; Efeitos:   Inicia a contagem no periferico a partir do valor zero, limpando
+ 594           	;            eventuais pedidos de interrupcao pendentes e iniciando com o
+ 595           	;            valor zero a variavel global sysclk
+ 596           	sysclk_init:
+ 597 021C 0E 24	        push lr
+ 598 021E 16 5C			bl ptc_init
+ 599 0220 61 0C	        ldr r1,addr_sysclk
+ 600 0222 00 60			mov r0,#0
+ 601 0224 10 20			str r0,[r1]  ; limpando eventuais pedidos de interrupcao pendentes (escrevendo)
+ 602 0226 0F 04			pop pc
+ 603           	
+ 604           	; Rotina:    sysclk_get_ticks
+ 605           	; Descricao: Devolve o valor corrente da variável global sysclk.
+ 606           	;            Interface exemplo: uint16_t sysclk_get_ticks ( );
+ 607           	; Entradas:  -
+ 608           	; Saidas:   R0 - O valor corrente da variável global sysclk
+ 609           	; Efeitos:   -
+ 610           	sysclk_get_ticks:
+ 611 0228 20 0C	                ldr r0,addr_sysclk
+ 612 022A 00 00					ldr r0,[r0]
+ 613 022C 0F B7					mov pc,lr
+ 614           	
+ 615           	addr_sysclk:
+ 616 022E 7E 02	     .word sysclk
+ 617           	; Gestor de periférico para o porto de entrada
+ 618           	;
+ 619           	
+ 620           	; Rotina:    inport_read
+ 621           	; Descricao: Adquire e devolve o valor corrente do porto de entrada.
+ 622           	;            Interface exemplo: uint8_t inport_read( );
+ 623           	; Entradas:  -
+ 624           	; Saidas:    R0 - valor adquirido do porto de entrada
+ 625           	; Efeitos:   -
+ 626           	inport_read:
+ 627 0230 21 0C		ldr	r1, inport_addr
+ 628 0232 10 08		ldrb	r0, [r1, #0]
+ 629 0234 0F B7		mov	pc, lr
+ 630           	
+ 631           	inport_addr:
+ 632 0236 80 FF		.word	INPORT_ADDRESS
+ 633           	
+ 634           	; Gestor de periférico para o porto de saída
+ 635           	;
+ 636           	
+ 637           	
+ 638           	; Rotina:    outport_init
+ 639           	; Descricao: Faz a iniciacao do porto de saida, nele estabelecendo o valor
+ 640           	;            recebido em R0.
+ 641           	;            Interface exemplo: void outport_init( uint8_t value );
+ 642           	; Entradas:  R0 - Valor a atribuir ao porto de saida.
+ 643           	; Saidas:    -
+ 644           	; Efeitos:   Altera o valor da variavel global outport_img.
+ 645           	outport_init:
+ 646 0238 0E 24		push	lr
+ 647 023A 31 0C		ldr	r1, outport_img_addr
+ 648 023C 10 28		strb	r0, [r1]
+ 649 023E 02 5C		bl	outport_write
+ 650 0240 0F 04		pop	pc
+ 651           	
+ 652           	outport_img_addr:
+ 653 0242 7C 02		.word	outport_img
+ 654           	
+ 655           	; Rotina:    outport_write
+ 656           	; Descricao: Escreve no porto de saida o valor recebido em R0.
+ 657           	;            Interface exemplo: void outport_write( uint8_t value );
+ 658           	; Entradas:  R0 - valor a atribuir ao porto de saida.
+ 659           	; Saidas:    -
+ 660           	; Efeitos:   -
+ 661           	outport_write:
+ 662 0244 21 0C		ldr	r1, outport_addr
+ 663 0246 10 28		strb	r0, [r1, #0]
+ 664 0248 0F B7		mov	pc, lr
+ 665           	
+ 666           	outport_addr:
+ 667 024A C0 FF		.word	OUTPORT_ADDRESS
+ 668           	
+ 669           	; Gestor de periférico para o Pico Timer/Counter (pTC)
+ 670           	;
+ 671           	
+ 672           	; Rotina:    ptc_init
+ 673           	; Descricao: Faz a iniciacao do periférico pTC, habilitando o seu funcionamento
+ 674           	;            em modo continuo e com o intervalo de contagem recebido em R0, em
+ 675           	;            ticks.
+ 676           	;            Interface exemplo: void ptc_init( uint8_t interval );
+ 677           	; Entradas:  R0 - Valor do novo intervalo de contagem, em ticks.
+ 678           	; Saidas:    -
+ 679           	; Efeitos:   Inicia a contagem no periferico a partir do valor zero, limpando
+ 680           	;            o pedido de interrupcao eventualmente pendente.
+ 681           	ptc_init:
+ 682 024C 0E 24	    push    lr
+ 683 024E 51 0D		ldr	r1, PTC_ADDR
+ 684 0250 12 60		mov	r2, #PTC_CMD_STOP
+ 685 0252 12 28		strb	r2, [r1, #PTC_TCR]
+ 686 0254 10 29		strb	r0, [r1, #PTC_TMR]
+ 687 0256 0E 5C	    bl  ptc_clr_irq
+ 688 0258 02 60		mov	r2, #PTC_CMD_START
+ 689 025A 12 28		strb	r2, [r1, #PTC_TCR]
+ 690 025C 0F 04		pop pc
+ 691           	
+ 692           	; Rotina:    ptc_start
+ 693           	; Descricao: Habilita a contagem no periferico pTC.
+ 694           	;            Interface exemplo: void ptc_start( );
+ 695           	; Entradas:  -
+ 696           	; Saidas:    -
+ 697           	; Efeitos:   -
+ 698           	ptc_start:
+ 699 025E D0 0C		ldr	r0, PTC_ADDR
+ 700 0260 01 60		mov	r1, #PTC_CMD_START
+ 701 0262 01 28		strb	r1, [r0, #PTC_TCR]
+ 702 0264 0F B7		mov	pc, lr
+ 703           	
+ 704           	; Rotina:    ptc_stop
+ 705           	; Descricao: Para a contagem no periferico pTC.
+ 706           	;            Interface exemplo: void ptc_stop( );
+ 707           	; Entradas:  -
+ 708           	; Saidas:    -
+ 709           	; Efeitos:   O valor do registo TC do periferico e colocado a zero.
+ 710           	ptc_stop:
+ 711 0266 90 0C		ldr	r0, PTC_ADDR
+ 712 0268 11 60		mov	r1, #PTC_CMD_STOP
+ 713 026A 01 28		strb	r1, [r0, #PTC_TCR]
+ 714 026C 0F B7		mov	pc, lr
+ 715           	
+ 716           	; Rotina:    ptc_get_value
+ 717           	; Descricao: Devolve o valor corrente da contagem do periferico pTC.
+ 718           	;            Interface exemplo: uint8_t ptc_get_value( );
+ 719           	; Entradas:  -
+ 720           	; Saidas:    R0 - O valor corrente do registo TC do periferico.
+ 721           	; Efeitos:   -
+ 722           	ptc_get_value:
+ 723 026E 51 0C		ldr	r1, PTC_ADDR
+ 724 0270 10 0A		ldrb	r0, [r1, #PTC_TC]
+ 725 0272 0F B7		mov	pc, lr
+ 726           	
+ 727           	; Rotina:    ptc_clr_irq
+ 728           	; Descricao: Sinaliza o periferico pTC que foi atendido um pedido de
+ 729           	;            interrupção.
+ 730           	;            Interface exemplo: void ptc_clr_irq( );
+ 731           	; Entradas:  -
+ 732           	; Saidas:    -
+ 733           	; Efeitos:   -
+ 734           	ptc_clr_irq:
+ 735 0274 20 0C		ldr	r0, PTC_ADDR
+ 736 0276 01 2B		strb	r1, [r0, #PTC_TIR]
+ 737 0278 0F B7		mov	pc, lr
+ 738           	
+ 739           	PTC_ADDR:
+ 740 027A 40 FF		.word	PTC_ADDRESS
+ 741           	
+ 742           	; Seccao:    data
+ 743           	; Descricao: Guarda as variáveis globais
+ 744           	;
+ 745           		.data
+ 746           	outport_img:
+ 747 027C 00   		.space	1
+ 748           	
+ 749 027D 00  		.align
+ 750           	sysclk:
+ 751 027E 00   		.space	2
+ 751 027F 00
+ 752           	
+ 753          		.align
+ 754           	semaforo_t:
+ 755 0280 00   		.space	2
+ 755 0281 00
+ 756           		
+ 757          		.align
+ 758           	crossing_time_timer:
+ 759 0282 00   		.space  2
+ 759 0283 00
+ 760           	
+ 761          		.align
+ 762           	semaforo_led_estado:
+ 763 0284 00   		.space	2
+ 763 0285 00
+ 764           	
+ 765          		.align
+ 766           	semaforo_estado_anterior:
+ 767 0286 00   		.space	2
+ 767 0287 00
+ 768           	
+ 769          		.align
+ 770           	trigger_semaforo_timer:
+ 771 0288 00   		.space 2
+ 771 0289 00
+ 772           	
+ 773          		.align
+ 774           	btn_estado:
+ 775 028A 00   		.space 2
+ 775 028B 00
+ 776           	
+ 777          		.align
+ 778           	crossing_time_index:
+ 779 028C 00   		.space 2
+ 779 028D 00
+ 780           	
+ 781           	;array com 5 valores entre 10 e 60 s
+ 782           	cfg_times:      ; 10s(valor pré-definido) 12s  15s 17s  20s
+ 783          		.byte  100, 120, 150, 170, 200
+ 783 028E 64 78 96 AA C8
+ 784           	
+ 785           	
+ 786           	; Seccao:    stack
+ 787           	; Descricao: Implementa a pilha com o tamanho definido pelo simbolo STACK_SIZE
+ 788           	;
+ 789           		.stack
+ 790 0294 00   		.space	STACK_SIZE
+ 790 .... ..
+ 790 02D3 00
+ 791           	stack_top:
+ 791           	
